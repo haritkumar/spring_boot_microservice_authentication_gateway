@@ -1,6 +1,7 @@
 package com.gateway;
 
 import java.io.IOException;
+import java.util.Collections;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -13,6 +14,8 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.Contact;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
@@ -34,9 +37,20 @@ public class GatewayApplication {
           .select()
           .apis(RequestHandlerSelectors.basePackage("com.gateway.api"))
           .paths(PathSelectors.any())
-          .build();
+          .build()
+          .apiInfo(apiInfo());
 	}
 	
+	private ApiInfo apiInfo() {
+	    return new ApiInfo(
+	      "Microservices", 
+	      "Microservices with eureka and zuul proxy", 
+	      "", 
+	      "", 
+	      new Contact("", "", ""), 
+	      "", "", Collections.emptyList());
+	}
+
 	@Bean
 	public RestTemplate restTemplate() {
 		return new RestTemplate();

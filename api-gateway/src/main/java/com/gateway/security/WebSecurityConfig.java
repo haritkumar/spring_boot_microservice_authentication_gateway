@@ -1,6 +1,5 @@
 package com.gateway.security;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -47,11 +46,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/*/")//
                 .antMatchers("/eureka/**")//
-                .antMatchers("/lastn/**")//
                 .antMatchers("/swagger-ui.html/**")
                 .antMatchers("/swagger-resources/**")
                 .antMatchers("/v2/api-docs")
                 .antMatchers("/service/auth")
+                .antMatchers("/auth/**")
                 .antMatchers("/webjars/**")
                 .antMatchers(HttpMethod.OPTIONS, "/**"); // Request type options should be allowed.
     }

@@ -3,6 +3,8 @@ package com.gateway.api;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +38,7 @@ public class AuthApi {
 	PasswordEncoder passwordEncoder;
 	
 	@PostMapping("/register")
-	public ResponseEntity<BaseApiResponse> register(AppUserDto appUserDto){
+	public ResponseEntity<BaseApiResponse> register(@Valid AppUserDto appUserDto){
 		logger.info("Registering user : {}",appUserDto.toString());
 		try {
 			Role role = roleRepository.findByRole("ROLE_USER");

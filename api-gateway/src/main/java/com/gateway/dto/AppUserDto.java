@@ -1,10 +1,20 @@
 package com.gateway.dto;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
+
 public class AppUserDto {
 
+	@NotEmpty(message = "*Please provide your first name")
 	private String fname;
+	
 	private String lname;
+	
+	@Email(message = "*Please provide a valid email")
+	@NotEmpty(message = "*Please provide an email")
 	private String email;
+	
+	@NotEmpty(message = "*Please provide your password")
 	private String password;
 	
 	public String getFname() {
